@@ -10,8 +10,7 @@ defmodule ExMustang.Responders.Giphy do
   @api_key Application.get_env(:ex_mustang, ExMustang.Responders.Giphy)[:api_key]
 
   @usage """
-  giphy - Gets a random gif from giphy
-  giphy <string> - Tries to find a gif matching <string>
+  giphy [search_term] - Tries to find a GIF matching search_term (gives random gif if no search_term is provided)
   """
 
   hear ~r/^giphy\s?(?<tag>.*)$/i, msg do
