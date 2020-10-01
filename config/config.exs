@@ -7,7 +7,7 @@ config :ex_mustang, ExMustang.Responders.Standup,
   slack_channel: System.get_env("STANDUP_CHANNEL") || "general",
   suffix: ["folks", "hackers", "peeps", "avengers"],
   msg: "Standup time",
-  enabled: true
+  enabled: false
 
 config :ex_mustang, ExMustang.Responders.Github,
   repos: ["techgaun/ex_mustang"],
@@ -18,20 +18,20 @@ config :ex_mustang, ExMustang.Responders.Github,
   created_time_threshold: 10800,
   # no old than 1 hour
   updated_time_threshold: 3600,
-  enabled: true
+  enabled: false
 
 config :ex_mustang, ExMustang.Responders.Quote,
   quote_src: "files/quotes.txt",
   schedule: "1 10 * * *",
   slack_channel: System.get_env("QUOTE_CHANNEL") || "general",
-  enabled: true
+  enabled: false
 
 config :ex_mustang, ExMustang.Responders.InviteAll,
   slack_token: System.get_env("SLACK_INVITEALL_TOKEN")
 
 config :ex_mustang, ExMustang.Responders.Pwned,
   schedule: "59 23 */1 * *",
-  enabled: true,
+  enabled: false,
   accounts: [
     "abc@example.com",
     "def@example.com"
@@ -40,7 +40,7 @@ config :ex_mustang, ExMustang.Responders.Pwned,
 
 config :ex_mustang, ExMustang.Responders.Uptime,
   schedule: "*/5 * * * *",
-  enabled: true,
+  enabled: false,
   endpoints: [
     [
       uri: "https://api.brighterlink.io/status",
@@ -87,7 +87,8 @@ config :ex_mustang, ExMustang.Robot,
     {ExMustang.Responders.HerokuDeploy, []},
     {ExMustang.Responders.InviteAll, []},
     {ExMustang.Responders.UrbanDictionary, []},
-    {ExMustang.Responders.ChuckMe, []}
+    {ExMustang.Responders.ChuckMe, []},
+    {ExMustang.Responders.Giphy, []}
   ]
 
 config :quantum, timezone: System.get_env("SYSTEM_TIME") || "America/Chicago"
@@ -95,6 +96,8 @@ config :quantum, timezone: System.get_env("SYSTEM_TIME") || "America/Chicago"
 config :ex_google,
   api_key: System.get_env("GOOGLE_API_KEY"),
   output: "json"
+
+config :ex_mustang, ExMustang.Responders.Giphy, api_key: System.get_env("GIPHY_API_KEY")
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
