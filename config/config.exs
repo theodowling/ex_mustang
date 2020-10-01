@@ -7,7 +7,7 @@ config :ex_mustang, ExMustang.Responders.Standup,
   slack_channel: System.get_env("STANDUP_CHANNEL") || "general",
   suffix: ["folks", "hackers", "peeps", "avengers"],
   msg: "Standup time",
-  enabled: false
+  enabled: true
 
 config :ex_mustang, ExMustang.Responders.Github,
   repos: ["techgaun/ex_mustang"],
@@ -18,20 +18,20 @@ config :ex_mustang, ExMustang.Responders.Github,
   created_time_threshold: 10800,
   # no old than 1 hour
   updated_time_threshold: 3600,
-  enabled: false
+  enabled: true
 
 config :ex_mustang, ExMustang.Responders.Quote,
   quote_src: "files/quotes.txt",
   schedule: "1 10 * * *",
   slack_channel: System.get_env("QUOTE_CHANNEL") || "general",
-  enabled: false
+  enabled: true
 
 config :ex_mustang, ExMustang.Responders.InviteAll,
   slack_token: System.get_env("SLACK_INVITEALL_TOKEN")
 
 config :ex_mustang, ExMustang.Responders.Pwned,
   schedule: "59 23 */1 * *",
-  enabled: false,
+  enabled: true,
   accounts: [
     "abc@example.com",
     "def@example.com"
@@ -40,7 +40,7 @@ config :ex_mustang, ExMustang.Responders.Pwned,
 
 config :ex_mustang, ExMustang.Responders.Uptime,
   schedule: "*/5 * * * *",
-  enabled: false,
+  enabled: true,
   endpoints: [
     [
       uri: "https://api.brighterlink.io/status",
