@@ -60,7 +60,7 @@ defmodule ExMustang.Responders.Giphy do
     end
   end
 
-  defp extract_gif(%{"data" => %{"image_url" => image_url}}) do
+  defp extract_gif(%{"data" => %{"images" => %{"downsized" => %{"url" => image_url}}}}) do
     image_url
   end
 
